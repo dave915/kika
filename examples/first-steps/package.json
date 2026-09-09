@@ -1,0 +1,12 @@
+{
+  "name": "kika-first-steps",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "sandbox:build": "node build.mjs"
+  }
+}

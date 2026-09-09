@@ -1,0 +1,38 @@
+name: Verify kika
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+      - run: npm run build
+      - name: Build and start Docker on Linux
+        run: docker compose up -d --build --wait --wait-timeout 90
+      - name: Verify published ports and built UI
+        run: |
+          curl --fail http://localhost:4174/api/health
+          curl --fail http://127.0.0.1:4175/api/health
+          curl --fail http://localhost:4174/ --output /tmp/kika-index.html
+          test -s /tmp/kika-index.html
+          docker compose exec -T kika node scripts/docker-healthcheck.mjs
+      - name: Container logs
+        if: failure()
+        run: docker compose logs
+      - name: Stop test containers
+        if: always()
+        run: docker compose down -v

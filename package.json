@@ -1,0 +1,46 @@
+{
+  "name": "kika-sandbox",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsc -b && vite build",
+    "start": "node --env-file-if-exists=.env server/index.mjs",
+    "test": "node --test --test-concurrency=1 tests/*.test.mjs",
+    "mcp": "node packages/mcp/index.mjs",
+    "test:e2e": "npm run build && playwright test",
+    "format": "prettier --write src server packages scripts tests docs *.json *.ts *.html",
+    "ollama:serve": "OLLAMA_HOST=127.0.0.1:11434 OLLAMA_NO_CLOUD=1 ollama serve",
+    "remote:preview": "node --env-file-if-exists=.env scripts/remote-preview.mjs"
+  },
+  "dependencies": {
+    "@fontsource/manrope": "^5.2.8",
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "express": "^5.1.0",
+    "lucide-react": "^0.468.0",
+    "multer": "^2.0.2",
+    "pretendard": "^1.3.9",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "yauzl": "^3.2.0",
+    "yazl": "^3.3.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.3",
+    "agent-browser": "^0.27.0",
+    "prettier": "^3.9.6",
+    "typescript": "~5.9.2",
+    "vite": "^7.1.5"
+  }
+}

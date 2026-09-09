@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f8f6ee" />
+    <title>오늘의 작은 성공 — kika 놀이터</title>
+    <link rel="stylesheet" href="__APP_BASE__style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="top">
+        <a href="__APP_BASE__" class="brand" aria-label="kika 샘플 앱 홈"
+          >kika<span>.</span><small>작은 성공을 만드는 놀이터</small></a
+        ><span class="sample-tag">직접 써보는 샘플 앱 <i>01</i></span>
+      </header>
+      <main>
+        <section class="intro">
+          <div>
+            <span class="eyebrow">YOUR FIRST LITTLE WIN</span>
+            <h1>작은 성공을<br /><em>하나씩</em> 모아봐요.</h1>
+            <p>
+              거창하지 않아도 괜찮아요.<br />체크하고, 적고, 나만의 작은 한
+              걸음을 남겨보세요.
+            </p>
+          </div>
+          <div class="progress-stamp">
+            <div
+              id="progress-ring"
+              class="progress-ring"
+              role="progressbar"
+              aria-label="할 일 완료율"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
+              <span
+                ><strong id="done-count">0</strong
+                ><small id="total-count">/ 4 완료</small></span
+              >
+            </div>
+            <p id="progress-caption">첫 번째 체크를 기다리고 있어요</p>
+          </div>
+        </section>
+        <div id="error" class="error" role="alert" hidden>
+          <span id="error-message"></span
+          ><button id="retry">다시 불러오기 ↻</button>
+        </div>
+        <section class="board-layout">
+          <div class="checklist">
+            <div class="section-head">
+              <h2>오늘의 한 걸음 <span id="task-count">4</span></h2>
+              <span
+                id="save-status"
+                class="save-status"
+                role="status"
+                data-status="loading"
+                >불러오는 중…</span
+              >
+            </div>
+            <div id="tasks" class="tasks" aria-label="나의 체크리스트"></div>
+            <form id="add-form" class="add-task">
+              <label for="new-task" class="sr-only">새 할 일</label
+              ><input
+                id="new-task"
+                placeholder="나만의 작은 할 일을 추가해 보세요"
+                maxlength="80"
+                required
+                autocomplete="off"
+                disabled
+              /><button
+                type="submit"
+                id="add-button"
+                aria-label="할 일 추가"
+                disabled
+              >
+                ＋
+              </button>
+            </form>
+            <p class="add-hint">
+              작은 일도 좋아요. 최대 20개까지 담을 수 있어요.
+            </p>
+            <div class="try-note">
+              <span>↻</span>
+              <div>
+                <strong>새로고침해도 그대로 있어요.</strong>
+                <p>체크와 메모를 저장한 뒤, 직접 확인해 보세요.</p>
+              </div>
+              <button id="refresh" type="button">확인하기 ↗</button>
+            </div>
+          </div>
+          <aside class="memo">
+            <div class="memo-heading">
+              <span class="eyebrow">NOTE TO MYSELF</span
+              ><span class="tiny-star">✳</span>
+            </div>
+            <h2>오늘의 나에게<br />한마디.</h2>
+            <p>
+              떠오른 아이디어, 해낸 일,<br />내일의 나에게 남길 말도 좋아요.
+            </p>
+            <label class="sr-only" for="note">오늘의 메모</label
+            ><textarea
+              id="note"
+              rows="5"
+              maxlength="500"
+              placeholder="첫 앱을 열어봤다. 생각보다 어렵지 않은데?"
+              disabled
+            ></textarea>
+            <div class="memo-footer">
+              <span id="note-count">0 / 500</span
+              ><button id="save-note" type="button" disabled>
+                메모 저장 <span>↗</span>
+              </button>
+            </div>
+            <p id="note-status" class="note-status" role="status">
+              아직 메모가 없어요.
+            </p>
+            <div class="memo-divider"></div>
+            <p class="cheer" id="cheer">
+              처음 눌러본 버튼 하나도, 멋진 시작이에요.
+            </p>
+            <button id="encourage" class="encourage" type="button">
+              응원 한마디 더 <span>↻</span>
+            </button>
+          </aside>
+        </section>
+        <footer class="footer">
+          <span>kika에서 실제로 배포한 앱 · 나의 데이터는 서버에 저장돼요.</span
+          ><button id="reset" disabled>처음부터 해보기 ↻</button>
+        </footer>
+      </main>
+    </div>
+    <script type="module" src="__APP_BASE__app.js"></script>
+  </body>
+</html>

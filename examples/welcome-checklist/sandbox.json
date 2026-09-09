@@ -1,0 +1,4 @@
+{
+  "appId": "replace-with-your-project-id",
+  "capabilities": { "db": [], "start": [], "llm": null }
+}

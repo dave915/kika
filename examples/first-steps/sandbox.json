@@ -1,0 +1,14 @@
+{
+  "appId": "kika-first-steps",
+  "capabilities": {
+    "db": [
+      {
+        "collection": "boards",
+        "mode": "PERSONAL",
+        "operations": ["get", "set"]
+      }
+    ],
+    "start": [],
+    "llm": null
+  }
+}

@@ -1,0 +1,42 @@
+name: kika
+
+services:
+  kika:
+    build: .
+    init: true
+    restart: unless-stopped
+    stop_grace_period: 15s
+    ports:
+      - "127.0.0.1:${KIKA_MANAGE_PORT:-4174}:4174"
+      - "127.0.0.1:${KIKA_RUNTIME_PORT:-4175}:4175"
+    environment:
+      APP_MODE: local
+      HOST: 0.0.0.0
+      PORT: "4174"
+      RUNTIME_PORT: "4175"
+      MANAGE_ORIGIN: http://localhost:${KIKA_MANAGE_PORT:-4174}
+      RUNTIME_ORIGIN: http://127.0.0.1:${KIKA_RUNTIME_PORT:-4175}
+      DB_PATH: /app/.data/platform.sqlite
+      STORAGE_PATH: /app/.data
+      OLLAMA_BASE_URL: ${KIKA_OLLAMA_BASE_URL:-http://ollama:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-}
+      OLLAMA_TIMEOUT_MS: ${OLLAMA_TIMEOUT_MS:-120000}
+      TOKEN_MASTER_KEY: ${TOKEN_MASTER_KEY:-}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - kika-data:/app/.data
+
+  ollama:
+    image: ollama/ollama:latest
+    profiles: [ai]
+    restart: unless-stopped
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+      OLLAMA_NO_CLOUD: "1"
+    volumes:
+      - ollama-data:/root/.ollama
+
+volumes:
+  kika-data:
+  ollama-data:
